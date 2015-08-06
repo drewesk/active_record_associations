@@ -9,7 +9,14 @@ Rails.application.routes.draw do
 
   delete 'logout' => 'sessions#destroy'
 
-  resources :cars
+  resources :cars do
+    member do
+      get 'claim' => 'cars#claim'
+    end
+    # collection do
+      # /cars/blue
+    # end
+  end
 
   resources :users, only: [:new, :create],
     path_names: { new: 'signup' }
