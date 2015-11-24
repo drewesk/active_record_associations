@@ -1,9 +1,19 @@
-<div class="page-header">
-  <%= link_to cars_path, class: 'btn btn-default' do %>
-    <span class="glyphicon glyphicon-list-alt"></span>
-    Back
-  <% end %>
-  <h1>Signup</h1>
-</div>
+<div class="jumbotron">
+  <div class="row">
+    <% unless @user.omniauth? %>
+      <div class='col-xs-4 center-block'>
+        <%= image_tag('octocat.png', class: 'img-reponsive') %>
+        <%= link_to button_tag('Sign up via Github', class: 'btn-auth btn-github'), '/auth/github' %>
+      </div>
+      <div class='col-xs-6 col-xs-offset-2'>
+        <h1>Signup</h1>
+    <% else %>
+      <div class='col-xs-10 col-xs-offset-2 center-block'>
+        <h1>Verify Details</h1>
+    <% end %>
 
-<%= render 'form' %>
+    <%= render 'users/form' %>
+    </div>
+    </div>
+  </div>
+</div>

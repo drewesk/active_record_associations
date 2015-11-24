@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150806015343) do
+ActiveRecord::Schema.define(version: 20151121030710) do
 
   create_table "cars", force: :cascade do |t|
     t.string   "make"
@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(version: 20150806015343) do
     t.string   "password_digest"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+    t.boolean  "omniauth"
   end
 
 end

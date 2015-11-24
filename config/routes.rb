@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'auth/:provider/callback', to: 'sessions#oauth'
+
   get 'sessions/login'
 
   get 'pages/about', as: 'about'
