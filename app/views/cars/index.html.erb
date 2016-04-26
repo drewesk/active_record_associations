@@ -1,7 +1,9 @@
 <div class="page-header">
-  <%= link_to new_car_path, class: 'btn btn-primary' do %>
-    <span class="glyphicon glyphicon-plus"></span>
-    New Car
+  <% if policy(Car).new? %>
+    <%= link_to new_car_path, class: 'btn btn-primary' do %>
+      <span class="glyphicon glyphicon-plus"></span>
+      New Car
+    <% end %>
   <% end %>
   <h1>Listing cars</h1>
 </div>
