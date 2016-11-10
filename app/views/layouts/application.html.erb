@@ -33,7 +33,9 @@
         <ul class="nav navbar-nav">
           <%= link_in_li('Cars', root_path) %>
           <%= link_in_li('About', about_path) %>
-          <li><a href="#contact">Contact</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <%= render 'layouts/authentication' %>
         </ul>
       </div>
     </div>
