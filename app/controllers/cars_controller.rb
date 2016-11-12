@@ -1,15 +1,36 @@
 class CarsController < ApplicationController
-  before_action :set_car, only: [:show, :edit, :update, :destroy]
+  before_action :set_car, only: [:show, :edit, :update, :destroy, :claim, :unclaim]
 
   # GET /cars
   # GET /cars.json
   def index
-    @cars = Car.all
+    @cars = Car.unclaimed
+  end
+
+  def my_cars
+    @cars = Car.claimed(current_user)
+    render :index
   end
 
   # GET /cars/1
   # GET /cars/1.json
   def show
+  end
+
+  def claim
+    if current_user
+      current_user.cars << @car
+      redirect_to root_path,
+        notice: "#{@car.make} #{@car.model} has been saved to your inventory."
+    end
+  end
+
+  def unclaim
+    @car.user_id = nil
+    if @car.save
+      redirect_to my_cars_path,
+        notice: "#{@car.make} #{@car.model} has been removed from your inventory."
+    end
   end
 
   # GET /cars/new

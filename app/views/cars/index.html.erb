@@ -9,27 +9,36 @@
 <div class="table-responsive">
   <table class="table table-striped table-bordered table-hover">
     <thead>
-      <tr>
-            <th>Make</th>
-            <th>Model</th>
-            <th>Year</th>
-            <th>Price</th>
-            <th></th>
-        <th></th>
-        <th></th>
-      </tr>
+    <tr>
+      <th>Make</th>
+      <th>Model</th>
+      <th>Year</th>
+      <th>Price</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
     </thead>
 
     <tbody>
-      <%= content_tag_for(:tr, @cars) do |car| %>
-            <td><%= car.make %></td>
-            <td><%= car.model %></td>
-            <td><%= car.year %></td>
-            <td><%= number_to_currency(car.price) %></td>
-            <td><%= link_to 'Show', car %></td>
-        <td><%= link_to 'Edit', edit_car_path(car) %></td>
-        <td><%= link_to 'Destroy', car, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      <% end %>
+    <%= content_tag_for(:tr, @cars) do |car| %>
+      <td><%= car.make %></td>
+      <td><%= car.model %></td>
+      <td><%= car.year %></td>
+      <td><%= number_to_currency(car.price) %></td>
+      <td>
+        <% if current_user %>
+          <% if current_user.cars.include?(car) %>
+            <%= link_to 'UnClaim', unclaim_car_path(car) %>
+          <% else %>
+            <%= link_to 'Claim', claim_car_path(car) %>
+          <% end %>
+        <% end %>
+      </td>
+      <td><%= link_to 'Show', car %></td>
+      <td><%= link_to 'Edit', edit_car_path(car) %></td>
+      <td><%= link_to 'Destroy', car, method: :delete, data: {confirm: 'Are you sure?'} %></td>
+    <% end %>
     </tbody>
   </table>
 </div>

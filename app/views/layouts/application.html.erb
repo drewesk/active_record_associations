@@ -32,6 +32,9 @@
       <div id="navbar" class="collapse navbar-collapse">
         <ul class="nav navbar-nav">
           <%= link_in_li('Cars', root_path) %>
+          <% if current_user %>
+            <%= link_in_li('My Cars', my_cars_path) %>
+          <% end %>
           <%= link_in_li('About', about_path) %>
         </ul>
         <ul class="nav navbar-nav navbar-right">
