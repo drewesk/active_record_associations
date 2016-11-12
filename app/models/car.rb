@@ -7,4 +7,9 @@ class Car < ApplicationRecord
     greater_than: 0.00
   }
   validates :year, inclusion: { in: 1769..Time.zone.now.year }
+
+  belongs_to :user, optional: true
+
+  scope :unclaimed, -> { where(user_id: nil) }
+  scope :claimed, ->(user) { where(user_id: user.id) }
 end
